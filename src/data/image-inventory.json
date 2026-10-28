@@ -1,0 +1,76 @@
+[
+  {
+    "source": "1.jpeg",
+    "width": 960,
+    "height": 1280,
+    "format": "jpeg",
+    "variants": [
+      480,
+      960
+    ]
+  },
+  {
+    "source": "2.jpeg",
+    "width": 1280,
+    "height": 960,
+    "format": "jpeg",
+    "variants": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "source": "3.jpeg",
+    "width": 1280,
+    "height": 720,
+    "format": "jpeg",
+    "variants": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "source": "4.jpeg",
+    "width": 1156,
+    "height": 651,
+    "format": "jpeg",
+    "variants": [
+      480,
+      960
+    ]
+  },
+  {
+    "source": "5.jpeg",
+    "width": 1280,
+    "height": 720,
+    "format": "jpeg",
+    "variants": [
+      480,
+      960,
+      1280
+    ]
+  },
+  {
+    "source": "6.jpeg",
+    "width": 960,
+    "height": 1280,
+    "format": "jpeg",
+    "variants": [
+      480,
+      960
+    ]
+  },
+  {
+    "source": "poto.jpeg",
+    "width": 1280,
+    "height": 960,
+    "format": "jpeg",
+    "variants": [
+      480,
+      960,
+      1280
+    ]
+  }
+]
