@@ -1,7 +1,6 @@
 import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { SEO } from '../../components/common/SEO';
 import { PageIntro, SectionHeading } from '../../components/common/UI';
-import DemoForm from '../../components/common/DemoForm';
 import { siteConfig } from '../../data/siteConfig';
 
 export default function Kontak() {
@@ -10,7 +9,7 @@ export default function Kontak() {
     <>
       <SEO
         title="Kontak sekolah"
-        description="Informasi kontak resmi MITARBIYAH ISLAMIYAH dan simulasi formulir pertanyaan."
+        description="Alamat sekolah, nomor telepon, dan informasi kontak resmi MITARBIYAH ISLAMIYAH."
       />
       <PageIntro
         eyebrow="Hubungi kami"
@@ -44,14 +43,16 @@ export default function Kontak() {
               )}
             </div>
           </div>
-          <div className="form-layout contact-form-layout">
+          <div className="information-layout">
             <div>
               <SectionHeading
                 eyebrow="MARI TERHUBUNG"
                 title="Kami ingin mendengar pertanyaan Anda."
               />
               <p className="muted">
-                Saluran komunikasi akan diaktifkan setelah kontak resmi diberikan oleh sekolah.
+                {contact.phone
+                  ? 'Silakan hubungi nomor telepon resmi sekolah untuk pertanyaan tentang sekolah atau penerimaan siswa.'
+                  : 'Saluran komunikasi akan diaktifkan setelah kontak resmi diberikan oleh sekolah.'}
               </p>
               {contact.whatsapp && (
                 <a
@@ -65,22 +66,21 @@ export default function Kontak() {
                   <ArrowUpRight size={18} />
                 </a>
               )}
-              <div className="map-placeholder">
-                <div className="map-grid" />
-                <span className="map-pin">
-                  <MapPin size={28} />
-                </span>
-                <h3>{contact.address ? 'Lokasi sekolah' : 'Lokasi akan ditampilkan di sini'}</h3>
-                <p>{contact.address || 'Peta menunggu alamat resmi yang telah dikonfirmasi.'}</p>
-                {contact.mapUrl && (
-                  <a className="text-link" href={contact.mapUrl} target="_blank" rel="noreferrer">
-                    Buka peta
-                    <ArrowUpRight size={17} />
-                  </a>
-                )}
-              </div>
             </div>
-            <DemoForm />
+            <div className="map-placeholder">
+              <div className="map-grid" />
+              <span className="map-pin">
+                <MapPin size={28} />
+              </span>
+              <h3>{contact.address ? 'Lokasi sekolah' : 'Lokasi akan ditampilkan di sini'}</h3>
+              <p>{contact.address || 'Peta menunggu alamat resmi yang telah dikonfirmasi.'}</p>
+              {contact.mapUrl && (
+                <a className="text-link" href={contact.mapUrl} target="_blank" rel="noreferrer">
+                  Buka peta
+                  <ArrowUpRight size={17} />
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react';
+import { motion } from 'motion/react';
 import { Brand } from '../common/UI';
 import { siteConfig } from '../../data/siteConfig';
 
@@ -9,24 +10,40 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="container">
         <div className="footer-grid">
-          <div className="footer-brand">
+          <motion.div
+            className="footer-brand"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <Brand light />
             <p>Tempat belajar, menumbuhkan akhlak, dan menemukan potensi diri.</p>
             <span className="footer-arabic" lang="ar" dir="rtl">
               بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
             </span>
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             <h3>Jelajahi sekolah</h3>
             <Link to="/profil">Tentang kami</Link>
-            <Link to="/visi-misi">Visi & misi</Link>
+            <Link to="/visi-misi">Visi &amp; misi</Link>
             <Link to="/program">Program pendidikan</Link>
-            <Link to="/guru">Guru & tenaga pendidik</Link>
+            <Link to="/guru">Guru &amp; tenaga pendidik</Link>
             <Link to="/fasilitas">Fasilitas</Link>
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <h3>Informasi</h3>
-            <Link to="/berita">Berita & kegiatan</Link>
+            <Link to="/berita">Berita &amp; kegiatan</Link>
             <Link to="/galeri">Galeri sekolah</Link>
             <Link to="/ppdb">
               Penerimaan siswa baru <ArrowUpRight size={13} />
@@ -38,8 +55,14 @@ export default function Footer() {
                 <ArrowUpRight size={13} />
               </a>
             ))}
-          </div>
-          <div className="footer-contact">
+          </motion.div>
+          <motion.div
+            className="footer-contact"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             <h3>Mari terhubung</h3>
             <p>
               <MapPin size={17} />
@@ -56,14 +79,20 @@ export default function Footer() {
             <Link className="footer-contact-link" to="/kontak">
               Lihat informasi kontak <ArrowUpRight size={15} />
             </Link>
-          </div>
+          </motion.div>
         </div>
-        <div className="footer-bottom">
+        <motion.div
+          className="footer-bottom"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
           <p>
             © {new Date().getFullYear()} {siteConfig.name}. Seluruh hak cipta dilindungi.
           </p>
           <span>Dibangun dengan kepedulian untuk pendidikan.</span>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

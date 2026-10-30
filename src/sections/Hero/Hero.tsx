@@ -35,6 +35,17 @@ export default function Hero() {
         <Photo image={images.hero} eager className="hero-photo" sizes="100vw" />
       </div>
       <div className="hero-shade" />
+      {/* Animated floating particles */}
+      {!reduced && (
+        <div className="hero-particles" aria-hidden="true">
+          <span className="hero-particle" />
+          <span className="hero-particle" />
+          <span className="hero-particle" />
+          <span className="hero-particle" />
+          <span className="hero-particle" />
+          <span className="hero-particle" />
+        </div>
+      )}
       <GeometricPattern className="hero-geometry" size={380} />
       <div className="container hero-container">
         <motion.div
@@ -64,16 +75,32 @@ export default function Hero() {
               </span>
             ))}
           </h1>
-          <p>{siteConfig.description}</p>
-          <div className="hero-buttons">
+          <motion.p
+            initial={reduced ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+          >
+            {siteConfig.description}
+          </motion.p>
+          <motion.div
+            className="hero-buttons"
+            initial={reduced ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.75, duration: 0.5 }}
+          >
             <Button to="/profil" variant="light">
               Jelajahi Sekolah
             </Button>
             <Button to="/ppdb" variant="outline">
               Informasi PPDB
             </Button>
-          </div>
-          <div className="hero-note">
+          </motion.div>
+          <motion.div
+            className="hero-note"
+            initial={reduced ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9, duration: 0.5 }}
+          >
             <span className="hero-note-icon">
               <BookOpen size={19} />
             </span>
@@ -82,7 +109,7 @@ export default function Hero() {
               <br />
               <strong>Tumbuh dengan akhlak.</strong>
             </span>
-          </div>
+          </motion.div>
         </motion.div>
         <motion.div
           className="hero-floating"

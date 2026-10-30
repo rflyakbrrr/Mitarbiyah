@@ -8,7 +8,14 @@ export const siteConfig = {
   description:
     'MITARBIYAH ISLAMIYAH berkomitmen menghadirkan pendidikan berkualitas dengan memadukan ilmu pengetahuan, nilai-nilai Islam, dan pembentukan karakter untuk masa depan yang gemilang.',
   url: (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, '') ?? '',
-  contact: { address: '', email: '', phone: '', whatsapp: '', mapUrl: '' },
+  contact: {
+    address:
+      'Jl. Adi Sucipto RT. 02/08, Kelurahan Belendung, Kecamatan Benda, Kota Tangerang, Provinsi Banten 15123',
+    email: '',
+    phone: '085813136184',
+    whatsapp: '',
+    mapUrl: '',
+  },
   socials: [] as { label: string; url: string }[],
   profile: {
     introduction:
@@ -17,7 +24,10 @@ export const siteConfig = {
     history: '',
     principalName: '',
     principalMessage: '',
-    identity: [] as { label: string; value: string }[],
+    identity: [
+      { label: 'NPSN', value: '69727523' },
+      { label: 'NSM', value: '111236710052' },
+    ],
   },
   vision: 'Tumbuhnya generasi berilmu, berakhlak mulia, dan mampu memberi manfaat bagi sesama.',
   mission: [

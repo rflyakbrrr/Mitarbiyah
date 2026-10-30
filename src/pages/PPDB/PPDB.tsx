@@ -1,7 +1,6 @@
 import { CalendarDays, ClipboardList, FileCheck2, Route } from 'lucide-react';
 import { SEO } from '../../components/common/SEO';
 import { Button, Notice, PageIntro, Photo, SectionHeading } from '../../components/common/UI';
-import DemoForm from '../../components/common/DemoForm';
 import { siteConfig } from '../../data/siteConfig';
 import { images } from '../../data/images';
 
@@ -11,7 +10,7 @@ export default function PPDB() {
     <>
       <SEO
         title="Informasi PPDB"
-        description="Informasi penerimaan peserta didik baru MITARBIYAH ISLAMIYAH, persyaratan, alur, jadwal, dan simulasi formulir."
+        description="Informasi penerimaan peserta didik baru MITARBIYAH ISLAMIYAH, persyaratan, alur, dan jadwal pendaftaran."
       />
       <PageIntro
         eyebrow="Penerimaan peserta didik baru"
@@ -95,30 +94,30 @@ export default function PPDB() {
             </div>
           </div>
           <Notice>
-            Belum ada layanan pendaftaran daring aktif. Simulasi di bawah tidak membuat atau
-            menyimpan pendaftaran.
+            Belum ada layanan pendaftaran daring aktif. Silakan hubungi sekolah untuk informasi
+            pendaftaran.
           </Notice>
         </div>
       </section>
-      <section className="section soft-section" id="formulir">
-        <div className="container form-layout">
+      <section className="section soft-section">
+        <div className="container information-layout">
           <div>
             <SectionHeading eyebrow="SEBELUM MENDAFTAR" title="Kenali kebutuhan belajar anak." />
             <p className="muted">
               Sambil menunggu pengumuman, Anda dapat menyiapkan pertanyaan untuk pihak sekolah.
             </p>
-            <div className="question-list">
-              <ClipboardList size={26} />
-              <h3>Hal yang dapat ditanyakan</h3>
-              <ul>
-                <li>Bagaimana kegiatan belajar sehari-hari?</li>
-                <li>Apa saja persyaratan pendaftaran?</li>
-                <li>Bagaimana rincian biaya pendidikan?</li>
-                <li>Bagaimana komunikasi antara orang tua dan pendidik?</li>
-              </ul>
-            </div>
+            <Button to="/kontak">Hubungi sekolah</Button>
           </div>
-          <DemoForm registration />
+          <div className="question-list">
+            <ClipboardList size={26} />
+            <h3>Hal yang dapat ditanyakan</h3>
+            <ul>
+              <li>Bagaimana kegiatan belajar sehari-hari?</li>
+              <li>Apa saja persyaratan pendaftaran?</li>
+              <li>Bagaimana rincian biaya pendidikan?</li>
+              <li>Bagaimana komunikasi antara orang tua dan pendidik?</li>
+            </ul>
+          </div>
         </div>
       </section>
     </>

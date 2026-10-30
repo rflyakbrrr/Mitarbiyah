@@ -34,7 +34,7 @@ Statistik bernilai `null` sampai data resmi tersedia. Jangan mengisinya dengan p
 
 Program, visi, misi, filosofi, serta artikel ditandai sebagai draf atau contoh. Halaman detail konten demo menggunakan `noindex`. Setelah konten disetujui, ubah status `proposed`, `demo`, atau `profile.draft` yang sesuai dan sesuaikan penanda draf pada halaman visi/misi. Identitas kepala sekolah, riwayat, kontak, jadwal, biaya, serta persyaratan PPDB belum diberikan. Situs tidak menganggap objek yang terlihat dalam foto sebagai fasilitas resmi.
 
-Formulir kontak dan PPDB hanya melakukan validasi lokal dengan React Hook Form dan Zod. Tidak ada backend, pengiriman email, penyimpanan browser, atau pendaftaran sungguhan. Jangan mengubah pesan keberhasilan menjadi klaim pengiriman sampai endpoint nyata terintegrasi dan berhasil merespons.
+Halaman kontak dan PPDB tidak menyediakan formulir daring. Pertanyaan serta informasi pendaftaran diarahkan ke kontak resmi sekolah.
 
 Nomor `contact.whatsapp` harus memakai kode negara. Tautan WhatsApp, email, telepon, peta, dan media sosial hanya muncul ketika data terkait diisi. Gunakan URL HTTPS untuk tautan eksternal.
 
@@ -96,7 +96,7 @@ npm run build
 npm run test:e2e
 ```
 
-Tes browser desktop dan seluler mencakup routing langsung, galeri, gambar lokal, pencarian dan pagination berita, validasi formulir tanpa pengiriman, navigasi keyboard, reduced motion, overflow horizontal, serta audit axe WCAG A/AA. Tangkapan layar hero disimpan di `test-results/`. Audit otomatis tidak menggantikan peninjauan aksesibilitas manual dan tidak menyatakan skor Lighthouse tertentu.
+Tes browser desktop dan seluler mencakup routing langsung, galeri, gambar lokal, pencarian dan pagination berita, ketiadaan formulir di halaman kontak dan PPDB, navigasi keyboard, reduced motion, overflow horizontal, serta audit axe WCAG A/AA. Tangkapan layar hero disimpan di `test-results/`. Audit otomatis tidak menggantikan peninjauan aksesibilitas manual dan tidak menyatakan skor Lighthouse tertentu.
 
 Jika drive cache npm penuh, tentukan cache pada drive yang memiliki ruang:
 

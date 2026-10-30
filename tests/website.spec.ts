@@ -36,6 +36,28 @@ test('all pages and detail routes load without browser errors or overflow', asyn
   expect(errors).toEqual([]);
 });
 
+test('confirmed school identity and contact details are displayed', async ({ page }) => {
+  const address =
+    'Jl. Adi Sucipto RT. 02/08, Kelurahan Belendung, Kecamatan Benda, Kota Tangerang, Provinsi Banten 15123';
+
+  await page.goto('/kontak');
+  await expect(page.locator('.contact-cards').getByText(address, { exact: true })).toBeVisible();
+  await expect(
+    page.locator('.contact-cards').getByRole('link', { name: '085813136184', exact: true }),
+  ).toHaveAttribute('href', 'tel:085813136184');
+  await expect(page.locator('.map-placeholder')).toContainText(address);
+  await expect(page.locator('.footer-contact')).toContainText(address);
+  await expect(page.locator('.footer-contact')).toContainText('085813136184');
+  await expect(page.locator('.information-layout > div > .muted')).toContainText(
+    'Silakan hubungi nomor telepon resmi sekolah',
+  );
+
+  await page.goto('/profil');
+  const identityRows = page.locator('.identity-table > div');
+  await expect(identityRows.filter({ hasText: 'NPSN' })).toContainText('69727523');
+  await expect(identityRows.filter({ hasText: 'NSM' })).toContainText('111236710052');
+});
+
 test('local responsive photographs resolve', async ({ page }) => {
   const failures: string[] = [];
   page.on('response', (response) => {
@@ -118,31 +140,32 @@ test('news search, category filters, pagination and article links work', async (
 });
 
 for (const route of ['/kontak', '/ppdb']) {
-  test(`${route} demo form validates without submitting or saving`, async ({ page }) => {
-    const outgoing: string[] = [];
-    page.on('request', (request) => {
-      if (request.method() === 'POST') outgoing.push(request.url());
-    });
+  test(`${route} shows information without forms`, async ({ page }) => {
     await page.goto(route);
-    await page.getByRole('button', { name: 'Periksa formulir demo' }).click();
-    await expect(page.locator('.field-error').first()).toBeVisible();
-    await page
-      .getByLabel(route === '/ppdb' ? 'Nama orang tua / wali' : 'Nama Anda')
-      .fill('Nama Contoh');
-    await page.getByLabel('Alamat email').fill('contoh@example.com');
-    await page.getByLabel('Nomor telepon').fill('080000000000');
-    if (route === '/ppdb') await page.getByLabel('Nama calon siswa').fill('Siswa Contoh');
-    else
-      await page
-        .getByRole('textbox', { name: 'Pesan' })
-        .fill('Pesan percobaan untuk memeriksa formulir.');
-    await page.getByRole('checkbox').check();
-    await page.getByRole('button', { name: 'Periksa formulir demo' }).click();
-    await expect(page.getByRole('status')).toContainText('Data tidak disimpan atau dikirim');
-    expect(outgoing).toEqual([]);
-    expect(await page.evaluate(() => localStorage.length)).toBe(0);
-    await page.getByRole('button', { name: 'Bersihkan formulir' }).click();
-    await expect(page.getByLabel('Alamat email')).toHaveValue('');
+    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('form, input, textarea, button[type="submit"]')).toHaveCount(0);
+    await expect(page.getByText(/simulasi formulir|formulir demo/i)).toHaveCount(0);
+    await expect(page.locator('meta[name="description"]')).not.toHaveAttribute(
+      'content',
+      /formulir/i,
+    );
+    if (route === '/ppdb') {
+      await page.getByRole('link', { name: 'Hubungi sekolah', exact: true }).click();
+      await expect(page).toHaveURL(/\/kontak$/);
+      await page.goto(route);
+    } else {
+      await expect(
+        page.locator('.contact-cards').getByRole('link', { name: '085813136184', exact: true }),
+      ).toHaveAttribute('href', 'tel:085813136184');
+    }
+    for (const width of [320, 768, 1440]) {
+      await page.setViewportSize({ width, height: 1000 });
+      await expect(page.locator('.information-layout')).toBeVisible();
+      expect(
+        await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1),
+        `${route} at ${width}px`,
+      ).toBeTruthy();
+    }
   });
 }
 
